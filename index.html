@@ -1,9 +1,79 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PHARE nightly physics</title>
-<style>body{margin:0;font:16px/1.5 system-ui,sans-serif;background:#fbfbfa;color:#1d232a}
-main{max-width:720px;margin:0 auto;padding:32px 16px}
-@media (prefers-color-scheme: dark){body{background:#14181d;color:#e5e7eb}}</style></head>
-<body><main><h1>PHARE nightly physics</h1>
-<p>This page shows the results of PHARE's nightly physics tests. It appears here after the first night.</p>
-</main></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PHARE nightly physics</title><style>
+:root{--bg:#fbfbfa;--fg:#1d232a;--muted:#6b7280;--card:#fff;--line:#e5e7eb;
+--ok-bg:#eef8f1;--ok-line:#a7d7b5;--ok-fg:#276b3b;--warn-bg:#fff3dc;--warn-line:#d97706;
+--warn-fg:#92400e;--grey-bg:#f3f4f6;--grey-fg:#9aa1a9;--note:#fffaf0;
+--dg:#3f9d5a;--do:#d97706;--dx:#9aa1a9;--dr:#c2410c}
+@media (prefers-color-scheme: dark){:root{--bg:#14181d;--fg:#e5e7eb;--muted:#9aa1a9;
+--card:#1c2229;--line:#303842;--ok-bg:#16291d;--ok-line:#2f6b43;--ok-fg:#8fd3a3;
+--warn-bg:#33260f;--warn-line:#d97706;--warn-fg:#f5c27a;--grey-bg:#222931;
+--grey-fg:#7d8590;--note:#2a2415;--dg:#5ec17b;--do:#f0a23b;--dx:#6b7280;--dr:#f97316}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:16px}
+h1{margin:0 0 2px;font-size:20px}h2{margin:0 0 6px;font-size:15px}
+.muted{color:var(--muted);font-size:12px}
+a{color:inherit}
+.banner{background:var(--warn-bg);border:2px solid var(--warn-line);color:var(--warn-fg);
+border-radius:6px;padding:8px 12px;margin:8px 0}
+ul.notes{margin:6px 0;padding-left:18px;font-size:12px;color:var(--muted)}
+.tiles{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 16px}
+.tile{padding:6px 10px;border-radius:6px;font-size:12px;border:1px solid var(--line);
+background:var(--card);text-decoration:none}
+.tile.nominal{border-color:var(--ok-line);background:var(--ok-bg)}
+.tile.abnormal{border-color:var(--warn-line);background:var(--warn-bg);font-weight:600}
+.tile.notrun{color:var(--grey-fg);background:var(--grey-bg)}
+section.test,section.card{background:var(--card);border:1px solid var(--line);border-radius:6px;
+padding:12px;margin-bottom:10px;overflow-wrap:anywhere}
+section.abnormal{border:2px solid var(--warn-line);padding:14px}
+.quiet{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;
+align-items:start}
+.quiet section.card{margin:0;padding:10px}.quiet h2{font-size:13px}
+.quiet .figs .thumb{width:100%;max-width:100%}
+.pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;
+margin-left:4px;background:var(--grey-bg);color:var(--muted);vertical-align:1px}
+.pill.status.nominal{background:var(--ok-bg);color:var(--ok-fg)}
+.pill.status.abnormal,.pill.warn{background:var(--warn-bg);color:var(--warn-fg)}
+.figs{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin:8px 0}
+.figs .big{max-width:100%;width:520px}.figs .thumb{width:150px;max-width:45%}
+.figs img,.figs video{width:100%;height:auto;border:1px solid var(--line);border-radius:3px;background:#fff}
+.zoom{cursor:zoom-in}
+.analysis{background:var(--note);border-radius:4px;padding:10px 12px;margin:8px 0;
+white-space:pre-wrap;font-size:13px}
+.facts{font-size:13px;font-variant-numeric:tabular-nums}
+.dots{margin-top:8px;line-height:1}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:2px;
+background:var(--dx);border:1px solid var(--dx)}
+.dot.ring{background:transparent}
+.s-ok{background:var(--dg);border-color:var(--dg)}
+.s-suspicious,.s-failed{background:var(--do);border-color:var(--do)}
+.s-failed{background:var(--dr);border-color:var(--dr)}
+.dot.ring.s-ok,.dot.ring.s-suspicious,.dot.ring.s-failed{background:transparent}
+#lb{display:none;position:fixed;inset:0;background:rgba(15,18,22,.88);z-index:9999;
+align-items:center;justify-content:center;cursor:zoom-out}
+#lb img{max-width:94vw;max-height:92vh;background:#fff;border-radius:4px}
+footer{margin-top:18px}
+@media (min-width:1000px){body{font-size:16px}main{max-width:1500px;padding:24px 32px}
+h1{font-size:26px}h2{font-size:18px}.quiet h2{font-size:16px}.muted,ul.notes{font-size:14px}
+.tile{font-size:14px;padding:8px 12px}.pill{font-size:13px}
+.quiet{grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.figs .big{width:900px}.figs .thumb{width:240px}
+.analysis,.facts{font-size:15px}.dot{width:11px;height:11px}
+section.test{display:grid;grid-template-columns:minmax(0,900px) minmax(300px,1fr);
+column-gap:24px;align-items:start}section.test h2{grid-column:1/-1}
+section.test .figs{margin:8px 0}section.test .side{min-width:0}}
+</style></head><body><main><h1>PHARE nightly physics</h1><div class="muted">2026-10-29 · <a href="https://github.com/PHAREHUB/PHARE/commit/9e2d76192ef34e280c62d1a1412b1fc20a13f5f1">commit 9e2d761</a> · <a href="https://hephaistos.lpp.polytechnique.fr/teamcity/viewLog.html?buildId=101612">hybrid build 101612</a> · <a href="https://hephaistos.lpp.polytechnique.fr/teamcity/viewLog.html?buildId=101619">mhd build 101619</a> · read by opencode/deepseek-v4.1-flash-free · advice only, never a gate</div><div class="muted">0 to look at · 0 fine · 2 can't tell · 2 not run</div><div class="tiles"><a class="tile neutral" href="#ion_ion_beam1d">? ion_ion_beam1d</a><a class="tile neutral" href="#td1d">? td1d</a><a class="tile notrun" href="#convergence">- convergence</a><a class="tile notrun" href="#orszag_tang">- orszag_tang</a></div><div class="quiet"><section id="ion_ion_beam1d" class="card neutral"><h2>? ion_ion_beam1d <span class="pill status neutral">no analysis</span></h2><div class="figs"><div class="thumb"><img loading="lazy" class="zoom" data-group="ion_ion_beam1d" src="https://hephaistos.lpp.polytechnique.fr/teamcity/guestAuth/repository/download/Phare_Next_NightlyV1gcc_virtual_hybrid_functional_V__1/101612:id/publish/figures/ion_ion_beam1d__ion_ion_beam1d.png" alt="ion_ion_beam1d__ion_ion_beam1d.png"></div></div><div class="side"><div class="facts">gamma = 0.08725</div><div class="facts muted">the free usage limit of opencode/deepseek-v4.1-flash-free is reached</div><div class="dots"><a class="dot s-no-analysis" title="2026-10-29 · no analysis · 0.08725" href="https://hephaistos.lpp.polytechnique.fr/teamcity/viewLog.html?buildId=101612&amp;tab=artifacts"></a></div></div></section><section id="td1d" class="card neutral"><h2>? td1d <span class="pill status neutral">not judged</span></h2><div class="figs"><div class="thumb"><img loading="lazy" class="zoom" data-group="td1d" src="https://hephaistos.lpp.polytechnique.fr/teamcity/guestAuth/repository/download/Phare_Next_NightlyV1gcc_virtual_hybrid_functional_V__1/101612:id/publish/figures/td1d__by.png" alt="td1d__by.png"></div></div><div class="side"><div class="facts muted">vth = T(x) in the deck (vth is a standard deviation, so ion pressure is T^2): the TD is not in pressure balance; deck under review</div><div class="dots"><a class="dot s-not-judged" title="2026-10-29 · not judged" href="https://hephaistos.lpp.polytechnique.fr/teamcity/viewLog.html?buildId=101612&amp;tab=artifacts"></a></div></div></section><section id="convergence" class="card notrun"><h2>- convergence <span class="pill status notrun">not run</span></h2><div class="side"><div class="facts muted">the mhd job left no results tonight</div><div class="dots"><a class="dot s-not-run" title="2026-10-29 · not run" href="https://hephaistos.lpp.polytechnique.fr/teamcity/viewLog.html?buildId=101619&amp;tab=artifacts"></a></div></div></section><section id="orszag_tang" class="card notrun"><h2>- orszag_tang <span class="pill status notrun">not run</span></h2><div class="side"><div class="facts muted">the mhd job left no results tonight</div><div class="facts muted">the test script checks nothing itself</div><div class="dots"><a class="dot s-not-run" title="2026-10-29 · not run" href="https://hephaistos.lpp.polytechnique.fr/teamcity/viewLog.html?buildId=101619&amp;tab=artifacts"></a></div></div></section></div><footer class="muted">Rewritten every night by the TeamCity shadow nightly. Figures load from TeamCity: if it is down, they are missing.</footer></main><div id="lb"><img id="lbimg" alt=""></div><script>
+(function(){var lb=document.getElementById('lb'),im=document.getElementById('lbimg'),
+g=[],i=0;
+function show(){im.src=g[i].src;lb.style.display='flex'}
+function hide(){lb.style.display='none';im.removeAttribute('src')}
+document.addEventListener('click',function(ev){var t=ev.target;
+if(t.classList&&t.classList.contains('zoom')){
+g=[].slice.call(document.querySelectorAll('img.zoom')).filter(function(x){
+return x.dataset.group===t.dataset.group});i=g.indexOf(t);show()}
+else if(lb.style.display==='flex'){hide()}});
+document.addEventListener('keydown',function(ev){if(lb.style.display!=='flex')return;
+if(ev.key==='Escape')hide();
+else if(ev.key==='ArrowRight'){i=(i+1)%g.length;show()}
+else if(ev.key==='ArrowLeft'){i=(i-1+g.length)%g.length;show()}});
+})();
+</script></body></html>
