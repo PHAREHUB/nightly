@@ -50,6 +50,56 @@
      "reason": "the mhd job left no results tonight"
     }
    }
+  },
+  {
+   "date": "2026-10-30",
+   "run": {
+    "sha": "9fbbc965d82b0e5c0b4842dae5f43309207a5749",
+    "manual": false,
+    "time": "04:15",
+    "builds": {
+     "hybrid": {
+      "id": 101729,
+      "type": "Phare_Next_NightlyV1gcc_virtual_hybrid_functional_V__1",
+      "start": "2026-10-30"
+     },
+     "mhd": {
+      "id": 101734,
+      "type": "Phare_Next_NightlyV1gcc_virtual_mhd_functional_V__1",
+      "start": "2026-10-30"
+     }
+    }
+   },
+   "tests": {
+    "ion_ion_beam1d": {
+     "status": "no analysis",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": 0.0867236604438565,
+     "reason": "the free usage limit of opencode/deepseek-v4.1-flash-free is reached"
+    },
+    "td1d": {
+     "status": "not judged",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": null,
+     "reason": "vth = T(x) in the deck (vth is a standard deviation, so ion pressure is T^2): the TD is not in pressure balance; deck under review"
+    },
+    "convergence": {
+     "status": "not run",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": "the mhd job left no results tonight"
+    },
+    "orszag_tang": {
+     "status": "not run",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": "the mhd job left no results tonight"
+    }
+   }
   }
  ]
 }
