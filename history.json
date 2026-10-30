@@ -56,7 +56,7 @@
    "run": {
     "sha": "9fbbc965d82b0e5c0b4842dae5f43309207a5749",
     "manual": false,
-    "time": "04:15",
+    "time": "07:17",
     "builds": {
      "hybrid": {
       "id": 101729,
@@ -72,18 +72,18 @@
    },
    "tests": {
     "ion_ion_beam1d": {
-     "status": "no analysis",
+     "status": "within tolerance",
      "job": "hybrid",
      "deck_passed": null,
      "key": 0.0867236604438565,
-     "reason": "the free usage limit of opencode/deepseek-v4.1-flash-free is reached"
+     "reason": null
     },
     "td1d": {
-     "status": "not judged",
+     "status": "eye check",
      "job": "hybrid",
      "deck_passed": null,
      "key": null,
-     "reason": "vth = T(x) in the deck (vth is a standard deviation, so ion pressure is T^2): the TD is not in pressure balance; deck under review"
+     "reason": "vth = T(x) in the deck, but vth is a standard deviation: the ion pressure is T^2, so the TD starts out of pressure balance; no tolerance until the deck is fixed"
     },
     "convergence": {
      "status": "not run",
