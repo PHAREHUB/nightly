@@ -100,6 +100,56 @@
      "reason": "the mhd job left no results tonight"
     }
    }
+  },
+  {
+   "date": "2026-11-02",
+   "run": {
+    "sha": "518128bd3a8dc1d96173028bd81c14d454ba9256",
+    "manual": false,
+    "time": "04:12",
+    "builds": {
+     "mhd": {
+      "id": 102137,
+      "type": "Phare_Next_NightlyV1gcc_virtual_mhd_functional_V__1",
+      "start": "2026-11-02"
+     },
+     "hybrid": {
+      "id": 102139,
+      "type": "Phare_Next_NightlyV1gcc_virtual_hybrid_functional_V__1",
+      "start": "2026-11-02"
+     }
+    }
+   },
+   "tests": {
+    "ion_ion_beam1d": {
+     "status": "within tolerance",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": 0.08661987696218436,
+     "reason": null
+    },
+    "td1d": {
+     "status": "eye check",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": null,
+     "reason": "vth = T(x) in the deck, but vth is a standard deviation: the ion pressure is T^2, so the TD starts out of pressure balance; no tolerance until the deck is fixed"
+    },
+    "convergence": {
+     "status": "eye check",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": null
+    },
+    "orszag_tang": {
+     "status": "eye check",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": null
+    }
+   }
   }
  ]
 }
