@@ -150,6 +150,56 @@
      "reason": null
     }
    }
+  },
+  {
+   "date": "2026-11-03",
+   "run": {
+    "sha": "fad6c56c9fce19b2183fa46d2e1d68dee28dea08",
+    "manual": false,
+    "time": "04:21",
+    "builds": {
+     "mhd": {
+      "id": 102241,
+      "type": "Phare_Next_NightlyV1gcc_virtual_mhd_functional_V__1",
+      "start": "2026-11-03"
+     },
+     "hybrid": {
+      "id": 102246,
+      "type": "Phare_Next_NightlyV1gcc_virtual_hybrid_functional_V__1",
+      "start": "2026-11-03"
+     }
+    }
+   },
+   "tests": {
+    "ion_ion_beam1d": {
+     "status": "not run",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": null,
+     "reason": "the hybrid job left no results tonight"
+    },
+    "td1d": {
+     "status": "not run",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": null,
+     "reason": "the hybrid job left no results tonight"
+    },
+    "convergence": {
+     "status": "eye check",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": null
+    },
+    "orszag_tang": {
+     "status": "eye check",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": null
+    }
+   }
   }
  ]
 }
