@@ -1000,6 +1000,56 @@
      "reason": null
     }
    }
+  },
+  {
+   "date": "2026-11-20",
+   "run": {
+    "sha": "27bf553b1704c7a7dbb73036bb81c6b101284cfa",
+    "manual": false,
+    "time": "03:55",
+    "builds": {
+     "mhd": {
+      "id": 104450,
+      "type": "Phare_Next_NightlyV1gcc_virtual_mhd_functional_V__1",
+      "start": "2026-11-20"
+     },
+     "hybrid": {
+      "id": 104454,
+      "type": "Phare_Next_NightlyV1gcc_virtual_hybrid_functional_V__1",
+      "start": "2026-11-20"
+     }
+    }
+   },
+   "tests": {
+    "ion_ion_beam1d": {
+     "status": "within tolerance",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": 0.08611482439440879,
+     "reason": null
+    },
+    "td1d": {
+     "status": "not run",
+     "job": "hybrid",
+     "deck_passed": null,
+     "key": null,
+     "reason": "output missing"
+    },
+    "convergence": {
+     "status": "eye check",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": null
+    },
+    "orszag_tang": {
+     "status": "eye check",
+     "job": "mhd",
+     "deck_passed": null,
+     "key": null,
+     "reason": null
+    }
+   }
   }
  ]
 }
